@@ -1,0 +1,36 @@
+<% if(isLogged==0){ %>
+<% include ../partials/header %>
+<% } %>
+<% if(isLogged==1){ %>
+<% include ../partials/loggedHeader %>
+<% } %>
+
+<% if(myComment==0){ %>
+
+<div class="frm_comments">
+    <p> <a href="/camp_grounds">Browse CampGrounds</a>/<a href="/camp_grounds/<%= comment.id_Camp %>">CampGrounds</a>/More Info Page(we are here) </p>
+    <h2>Posted By: <%= comment.author %> </h2>
+    <hr>
+    <p style="word-break: break-all;white-space: normal;"> <%= comment.text %> </p>
+</div>
+
+<% } %>
+
+<% if(myComment==1){ %>
+
+<form class="frm_comments" action="/camp_grounds/<%= comment.id_Camp  %>/comments/<%= comment._id %>?_method=delete" method="POST">
+    <p> <a href="/camp_grounds">Browse CampGrounds</a>/<a href="/camp_grounds/<%= comment.id_Camp %>">Camp</a>/More Info  Page(we are here) </p>
+    <h2>Posted By: <%= comment.author %> </h2>
+    <hr>
+    <p style="word-break: break-all;white-space: normal;"> <%= comment.text %> </p>
+    <a class="btn btn-warning" href="/camp_grounds/<%= comment.id_Camp  %>/comments/<%= comment._id %>/edit">edit</a>
+    <button class="btn btn-danger">Delete</button>
+</form>
+
+<% } %>
+
+
+
+
+
+<% include ../partials/footer %>

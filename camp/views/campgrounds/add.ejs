@@ -1,0 +1,28 @@
+<% if(isLogged==0){ %>
+<% include ../partials/header %>
+<% } %>
+<% if(isLogged==1){ %>
+<% include ../partials/loggedHeader %>
+<% } %>
+<div class = "container">
+    <div class="frm_comments" style="text-align:center">
+      <p> <a href="/camp_grounds">View our CampGrounds</a>/Add CampGrounds (we are here)</p>
+      <h1>Add CampGrounds</h1>
+      <hr>
+      <form action="/camp_grounds" method="POST">
+        <div style="display: block;margin-right: auto;margin-left: auto;" class="input-group mb-3">
+          <input style="width:100%" type="text" name="campName" placeholder="enter camp name" required>
+        </div>
+        <div style="display: block;margin-right: auto;margin-left: auto;" class="input-group mb-3">
+          <input style="width:100%" type="text" name="campImg" placeholder="enter camp img URL" required> 
+        </div>
+        <div style="display: block;margin-right: auto;margin-left: auto;" class="input-group mb-3">
+          <textarea style="width:100%"  name="campDes" rows="10" cols="50" placeholder="description" required></textarea>
+        </div>
+        <div style="display: block;margin-right: auto;margin-left: auto;" class="input-group mb-3">
+          <button style="width:100%" class="btn btn-primary">Add!</button>
+        </div>
+      </form>
+    </div>
+</div>
+<% include ../partials/footer %>

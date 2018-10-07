@@ -1,0 +1,67 @@
+<% if(isLogged==0){ %>
+<% include ../partials/header %>
+<% } %>
+<% if(isLogged==1){ %>
+<% include ../partials/loggedHeader %>
+<% } %>
+<div id="body" class="container">
+    <div class="row">
+        <div class="col-md-3">
+           <p class="lead"> CampGrounds </p> 
+           <p> <a href="/camp_grounds">Browse CampGrounds</a>/We are here </p>
+           
+           <form action="/camp_grounds/<%= camp._id %>?_method=delete" method="POST">
+               <%if(isEdit == 1){ %>
+               <a class="btn btn-warning" href="/camp_grounds/<%= camp._id  %>/edit">edit</a>
+               <button class="btn btn-danger">Delete</button>
+               <% } %>
+           </form>
+           <br>
+           <div class="list-group">
+               <li class="list-group-item active">info 1</li>
+               <li class="list-group-item">info 2</li>
+               <li class="list-group-item">info 3</li>
+           </div>
+        </div>
+        <div class="col-md-9">
+            <div class="card">
+               <img class="img-fluid" src=<%= camp.img %>>
+               <div style="float:left;">
+                  <h4 class="card-title" style="display:inline;"><%=camp.name %></h4>
+                  <span class="float-right card-title" style="display:inline; ">$9.00/night</span>
+               </div>
+               <p class="card-text"> <%= camp.des %> </p>
+            </div>
+            <br>
+            <div class="bg-light">
+                <p>Comment Section</p>
+                <hr>
+                <% camp.comments.forEach(function(comment){ %>
+                   <div class="comment">
+                      <h6 class="commentAuthor"> <%= comment.author %> </h4>
+                      <%if(comment.text.length > 40){ %>
+                      <p class="commentBody">  <%= comment.text.substring(0,40) %>... </p>
+                      <% } %>
+                      <%if(comment.text.length < 40){ %>
+                      <p class="commentBody">  <%= comment.text %> </p>
+                      <% } %>
+                      <a class="lnk" href="/camp_grounds/<%= camp._id %>/comments/<%= comment._id %>">See more</a>
+                   </div>
+                <% }); %>
+            </div>
+
+            <br>
+            <p>Add Comment</p>
+            <hr>
+            <form action="/camp_grounds/<%= camp._id %>" method="POST">
+              <div>
+                 <textarea name="comment[text]" rows="10" cols="50" placeholder="Write A Comment..." required></textarea> 
+              </div>
+              <div>
+                 <button class="btn btn-primary">Add a Comment</button> 
+              </div>
+            </form>
+        </div>
+    </div>
+</div>
+<% include ../partials/footer %>

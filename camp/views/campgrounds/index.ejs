@@ -1,0 +1,39 @@
+<% if(isLogged==0){ %>
+<% include ../partials/header %>
+<% } %>
+<% if(isLogged==1){ %>
+<% include ../partials/loggedHeader %>
+<% } %>
+
+<div id="body" class = "container">
+<div id="particles-js">    
+<header class="jumbotron">
+<h1>Welcome To CampGround Selection</h1>
+<a class="btn btn-primary " href="/">Home Page</a> 
+<% if(user == "admin"){ %>
+<a class="btn btn-primary " href="/camp_grounds/new">Add a CampGrounds</a>
+<% } %>
+</header>
+<canvas class="particles-js-canvas-el" width="1175" height="375" style="width: 100%; height: 100%;paddin-top:20px;"></canvas></div>
+
+<p>View Our CampGrounds!</p>
+
+<div class="row" style="display:flex; flex-wrap:wrap;">
+<% campgrounds.forEach(function(camp){ %>
+<div style="margin:0;margin-bottom: 10px;" class="col-md-3 col-sm-6">
+    <div  class="hovereffect">
+            <img class="img-responsive" src="<%=camp.img %>" alt="">
+            <div class="overlay">
+                <h2> <%= camp.name %></h2>
+                <a href="/camp_grounds/<%= camp._id %>" class="btn btn-primary">more info</a>
+            </div>
+    </div>
+</div>
+
+<% }); %> 
+</div>
+
+</div>
+
+<% include ../partials/footer %>
+

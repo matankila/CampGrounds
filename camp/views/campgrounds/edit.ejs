@@ -1,0 +1,28 @@
+<% if(isLogged==0){ %>
+<% include ../partials/header %>
+<% } %>
+<% if(isLogged==1){ %>
+<% include ../partials/loggedHeader %>
+<% } %>
+
+<div class="frm_comments">
+  <p> <a href="/camp_grounds">Browse CampGrounds</a>/<a href="/camp_grounds/<%= camp._id %>"><%= camp.name %></a>/Edit Page (we are here) </p>  
+  <h2> Edit Page </h2>
+  <hr>
+</div>
+
+<form class="frm_comments" action="/camp_grounds/<%= camp._id  %>?_method=put" method="POST">
+        <div style="display: block;margin-right: auto;margin-left: auto;" class="input-group mb-3">
+          <input style="width:100%" type="text" name="campName" placeholder="enter camp name" value="<%= camp.name %>" required> 
+        </div>
+        <div style="display: block;margin-right: auto;margin-left: auto;" class="input-group mb-3">
+          <input style="width:100%" type="text" name="campImg" placeholder="enter camp img URL" value="<%= camp.img %>" required>
+        </div>
+        <div style="display: block;margin-right: auto;margin-left: auto;" class="input-group mb-3">
+          <textarea style="width:100%"  name="campDes" rows="10" cols="50" placeholder="description" required><%= camp.des %></textarea>
+        </div>
+    <button style="display: block;margin-right: auto;margin-left: auto;" class="btn btn-danger">save</button>
+</form>
+
+
+<% include ../partials/footer %>

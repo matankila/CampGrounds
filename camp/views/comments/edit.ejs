@@ -1,0 +1,18 @@
+<% if(isLogged==0){ %>
+<% include ../partials/header %>
+<% } %>
+<% if(isLogged==1){ %>
+<% include ../partials/loggedHeader %>
+<% } %>
+
+<form class="frm_comments" action="/camp_grounds/<%= comment.id_Camp  %>/comments/<%= comment._id %>?_method=put" method="POST">
+    <p> <a href="/camp_grounds">Browse CampGrounds</a>/<a href="/camp_grounds/<%= comment.id_Camp %>">Camp</a>/<a href="/camp_grounds/<%= comment.id_Camp %>/comments/<%= comment._id %>">More Info Page</a>/Edit Page(we are here) </p>
+    <h2>Posted By: <%= comment.author %> </h2>
+    <hr>
+    <textarea  name="text" rows="10" cols="50" placeholder="comment" required><%= comment.text %></textarea>
+    <br>
+    <button class="btn btn-danger">save</button>
+</form>
+
+
+<% include ../partials/footer %>
